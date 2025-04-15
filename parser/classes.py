@@ -128,6 +128,31 @@ class Review:
         except NoSuchElementException:
             pass
 
+    def to_dict(self):
+        """Convert Review object to dictionary"""
+        result = {
+            'author': self.author,
+            'rating': self.rating if hasattr(self, 'rating') else self.review_rating,
+            'date': self.date if hasattr(self, 'date') else self.datetime,
+            'text': self.text if hasattr(self, 'text') else self.review_text,
+            'likes': self.likes if hasattr(self, 'likes') else self.like,
+            'dislikes': self.dislikes if hasattr(self, 'dislikes') else self.dislike
+        }
+        if self.response_text:
+            result['response'] = {
+                'text': self.response_text,
+                'date': self.response_datetime
+            }
+        return result
+
+    @property
+    def stars(self):
+        """Return star rating representation"""
+        rating = getattr(self, 'rating', None) or self.review_rating
+        if not isinstance(rating, int):
+            return "☆☆☆☆☆"
+        return "★" * rating + "☆" * (5 - rating)
+
 
 if __name__ == '__main__':
     pass

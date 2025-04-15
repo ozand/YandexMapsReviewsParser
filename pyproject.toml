@@ -1,0 +1,35 @@
+[project]
+name = "yandex-maps-reviews-parser"
+version = "0.1.0"
+requires-python = ">=3.8"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+addopts = "-ra -q"
+testpaths = ["tests"]
+[project]
+name = "yandexmapsreviewsparser"
+version = "0.1.0"
+description = "Yandex Maps reviews parser with Selenium"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "selenium>=4.0",
+    "tqdm>=4.0",
+    "python-dotenv>=1.0"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "--verbose --color=yes"
+
+[tool.coverage.run]
+source = ["parser"]
+omit = ["*/__init__.py"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+fail_under = 80
