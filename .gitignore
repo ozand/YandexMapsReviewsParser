@@ -8,3 +8,9 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Test coverage and local files
+.coverage
+.roo/
+.roomodes
+memory-bank/
